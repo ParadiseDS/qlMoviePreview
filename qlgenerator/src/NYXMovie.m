@@ -136,6 +136,8 @@
 		return false;
 	}
 
+	size.w = (size_t)((float)_dec_ctx->width * (float)size.h / (float)_dec_ctx->height);
+
 	// Allocate thumbnail
 	avpicture_free(&_picture);
 	if (avpicture_alloc(&_picture, AV_PIX_FMT_RGB24, (int)size.w, (int)size.h) != 0)
