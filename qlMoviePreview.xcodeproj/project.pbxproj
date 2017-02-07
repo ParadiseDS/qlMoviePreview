@@ -52,6 +52,7 @@
 		1ECBF55D1A4ACF6600CBEF22 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA901311A49A45C00E549E3 /* libz.dylib */; };
 		1ECBF55E1A4AD04A00CBEF22 /* NYXMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBF5301A4ABC6500CBEF22 /* NYXMovie.m */; };
 		1ECBF55F1A4AD04D00CBEF22 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E1521271A48614900CFA094 /* Tools.m */; };
+		8EB3B9391E33FCF200DEED49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB3B9381E33FCF200DEED49 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		1ECBF5481A4ACEFD00CBEF22 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1ECBF54A1A4ACEFD00CBEF22 /* GetMetadataForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
 		1ECBF54B1A4ACEFD00CBEF22 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8EB3B9381E33FCF200DEED49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EB3B9391E33FCF200DEED49 /* AudioToolbox.framework in Frameworks */,
 				1E812E701BE37F6B00D053A1 /* VideoDecodeAcceleration.framework in Frameworks */,
 				1E812E6E1BE37F4F00D053A1 /* CoreMedia.framework in Frameworks */,
 				1E812E6C1BE37F3F00D053A1 /* VideoToolbox.framework in Frameworks */,
@@ -192,6 +195,7 @@
 		1E5AE87518BC9957004FB76C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8EB3B9381E33FCF200DEED49 /* AudioToolbox.framework */,
 				1E812E6D1BE37F4F00D053A1 /* CoreMedia.framework */,
 				1E812E6A1BE37F2E00D053A1 /* VideoToolbox.framework */,
 				1E5AE87818BC9957004FB76C /* ApplicationServices.framework */,
