@@ -274,10 +274,10 @@
 					cname = "H.263+";
 					break;
 				case AV_CODEC_ID_H264:
-					cname = "H.264";
+					cname = "H.264 (AVC)";
 					break;
 				case AV_CODEC_ID_HEVC:
-					cname = "H.265";
+					cname = "HEVC";
 					break;
 				case AV_CODEC_ID_MPEG2VIDEO:
 					cname = "MPEG-2";
@@ -433,10 +433,10 @@
 						cname = "H.263+";
 						break;
 					case AV_CODEC_ID_H264:
-						cname = "H.264";
+						cname = "H.264 (AVC)";
 						break;
 					case AV_CODEC_ID_HEVC:
-						cname = "H.265";
+						cname = "HEVC";
 						break;
 					case AV_CODEC_ID_MPEG2VIDEO:
 						cname = "MPEG-2";
