@@ -10,6 +10,7 @@
 
 #import "NYXMovie.h"
 #import <libavformat/avformat.h>
+#import <libavutil/pixdesc.h>
 #import <libswscale/swscale.h>
 #import <sys/stat.h>
 #import <time.h>
@@ -491,11 +492,15 @@
 
 				if (profile != NULL)
 				{
-					// TODO: More reliable way to find bit depth
-					if ((strstr(profile, "High 10") != NULL) || (strstr(profile, "High 4:4:4") != NULL))
-						[str_video appendString:@"<li><span class=\"st\">Bit depth:</span> <span class=\"sc\">10 bits</span></li>"];
-					else // Assume 8 bits
-						[str_video appendString:@"<li><span class=\"st\">Bit depth:</span> <span class=\"sc\">8 bits</span></li>"];
+					const char *pix_fmt = av_get_pix_fmt_name(dec_par->format);
+					if (pix_fmt != NULL)
+					{
+						[str_video appendFormat:@"<li><span class=\"st\">Pixel Format:</span> <span class=\"sc\"> %s</span></li>", pix_fmt];
+						if (strstr(pix_fmt, "p10"))
+							[str_video appendString:@"<li><span class=\"st\">Bit depth:</span> <span class=\"sc\">10 bits</span></li>"];
+						else // Assume 8 bits
+							[str_video appendString:@"<li><span class=\"st\">Bit depth:</span> <span class=\"sc\">8 bits</span></li>"];
+					}
 				}
 			}
 
