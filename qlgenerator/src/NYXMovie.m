@@ -136,7 +136,11 @@
 		return false;
 	}
 
-	size.w = (size_t)((float)_dec_ctx->width * (float)size.h / (float)_dec_ctx->height);
+	// Scale width to keep orignal DAR
+	size.w = av_rescale(_dec_ctx->width, size.h, _dec_ctx->height);
+	const AVRational sar = av_guess_sample_aspect_ratio(_fmt_ctx, _stream, NULL);
+	if ((sar.num) && (sar.den))
+		size.w = av_rescale(size.w, sar.num, sar.den);
 
 	// Allocate thumbnail
 	avpicture_free(&_picture);
@@ -409,14 +413,16 @@
 			// Separator if multiple streams
 			if (nb_video_tracks > 0)
 				[str_video appendString:@"<div class=\"sep\">----</div>"];
-
-			// WIDTHxHEIGHT (DAR)
-			const int height = dec_par->height;
-			int width = dec_par->width;
+			// show FAR
+			[str_video appendFormat:@"<li><span class=\"st\">Resolution:</span> <span class=\"sc\">%dx%d", dec_par->width, dec_par->height];
 			const AVRational sar = av_guess_sample_aspect_ratio(_fmt_ctx, stream, NULL);
-			if ((sar.num) && (sar.den))
-				width = (int)av_rescale(dec_par->width, sar.num, sar.den);
-			[str_video appendFormat:@"<li><span class=\"st\">Resolution:</span> <span class=\"sc\">%dx%d", width, height];
+			// show DAR if not equal to FAR
+			if ((sar.num) && (sar.den) && (sar.num != sar.den))
+			{
+				const int height = dec_par->height;
+				const int width = (int)av_rescale(dec_par->width, sar.num, sar.den);
+				[str_video appendFormat:@" => %dx%d", width, height];
+			}
 			const AVRational dar = stream->display_aspect_ratio;
 			if ((dar.num) && (dar.den))
 				[str_video appendFormat:@" <em>(%d:%d)</em></span></li>", dar.num, dar.den];
